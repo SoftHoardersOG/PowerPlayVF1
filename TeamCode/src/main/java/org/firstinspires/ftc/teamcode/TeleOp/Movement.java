@@ -26,6 +26,6 @@ public class Movement {
     }
 
     private static void setLimitSpeed(Gamepad gamepad) {
-        limitSpeed = gamepad.right_bumper ? 2 : 1;
+        limitSpeed = 4;
     }
 }
