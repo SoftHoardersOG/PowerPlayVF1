@@ -18,7 +18,10 @@ public class MainTeleOp extends LinearOpMode {
             Movement.run(gamepad1);
             Claw.run(gamepad1);
             Arm.run(gamepad1);
-            telemetry.addData("arm position", Hardware.arm.getCurrentPosition());
+            Slides.run(gamepad1);
+            telemetry.addData("right slide position: ", Hardware.rightSlide.getCurrentPosition());
+            telemetry.addData("left slide position: ", Hardware.leftSlide.getCurrentPosition());
+            telemetry.addData("arm position: ", Hardware.arm.getCurrentPosition());
             telemetry.update();
         }
     }
