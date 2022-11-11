@@ -17,6 +17,8 @@ import com.acmerobotics.roadrunner.trajectory.TrajectoryMarker;
 import com.acmerobotics.roadrunner.util.NanoClock;
 
 import org.firstinspires.ftc.teamcode.Hardware.Hardware;
+import org.firstinspires.ftc.teamcode.Hardware.revex.ExpansionHubEx;
+import org.firstinspires.ftc.teamcode.Hardware.revex.ExpansionHubMotor;
 import org.firstinspires.ftc.teamcode.RoadRunner.trajectorysequence.sequencesegment.SequenceSegment;
 import org.firstinspires.ftc.teamcode.RoadRunner.trajectorysequence.sequencesegment.TrajectorySegment;
 import org.firstinspires.ftc.teamcode.RoadRunner.trajectorysequence.sequencesegment.TurnSegment;
@@ -193,6 +195,11 @@ public class TrajectorySequenceRunner {
         packet.put("yError", getLastPoseError().getY());
         packet.put("headingError (deg)", Math.toDegrees(getLastPoseError().getHeading()));
         packet.put("arm position", Hardware.arm.getCurrentPosition());
+        packet.put("arm position", Hardware.arm.getCurrentPosition());
+        packet.put("left slide current draw", ((ExpansionHubMotor)(Hardware.leftSlide)).getCurrentDraw(ExpansionHubEx.CurrentDrawUnits.AMPS));
+        packet.put("right slide current draw", ((ExpansionHubMotor)(Hardware.rightSlide)).getCurrentDraw(ExpansionHubEx.CurrentDrawUnits.AMPS));
+        packet.put("arm current draw", ((ExpansionHubMotor)(Hardware.arm)).getCurrentDraw(ExpansionHubEx.CurrentDrawUnits.AMPS));
+
 
         draw(fieldOverlay, currentTrajectorySequence, currentSegment, targetPose, poseEstimate);
 

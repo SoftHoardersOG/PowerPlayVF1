@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Hardware;
 
 import static org.firstinspires.ftc.teamcode.Hardware.HardwareUtils.*;
 
+import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -9,6 +10,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Hardware.revex.ExpansionHubEx;
 import org.firstinspires.ftc.teamcode.TeleOp.Arm;
 
 
@@ -23,10 +25,12 @@ public class Hardware {
     public static Telemetry telemetry;
     public static DcMotorEx leftSlide;
     public static DcMotorEx rightSlide;
+    public static ExpansionHubEx expansionHub;
 
     public static void init(HardwareMap hardwareMap, Telemetry _telemetry) {
         HardwareUtils.hardwareMap = hardwareMap;
         telemetry = _telemetry;
+        expansionHub = new ExpansionHubEx(hardwareMap.get(LynxModule.class, "Control Hub"));
         frontLeft = getDc("frontLeft");
         frontRight = getDc("frontRight");
         backLeft = getDc("backLeft");
@@ -41,7 +45,7 @@ public class Hardware {
 
     public static void configure() {
         rightClaw.setPosition(0.14);
-        leftClaw.setPosition(0.96);
+        leftClaw.setPosition(0.95);
 
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -56,14 +60,14 @@ public class Hardware {
         rightSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        rightSlide.setPower(0.8);
-        leftSlide.setPower(0.8);
+        rightSlide.setPower(1);
+        leftSlide.setPower(1);
 
         rightSlide.setTargetPosition(0);
         leftSlide.setTargetPosition(0);
 
-        Arm.pid.setTarget(-50);
+        Arm.pid.setTarget(-15);
 
-        telemetry.addLine("Hardware configurating done!");
+        telemetry.addLine("Hardware configuring done!");
     }
 }

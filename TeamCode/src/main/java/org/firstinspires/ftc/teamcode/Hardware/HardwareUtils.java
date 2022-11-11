@@ -5,6 +5,9 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Hardware.revex.ExpansionHubEx;
+
+
 public class HardwareUtils {
     public static HardwareMap hardwareMap;
 
@@ -18,5 +21,9 @@ public class HardwareUtils {
 
     public static Servo getServo(String name) {
         return hardwareMap.get(Servo.class, name);
+    }
+
+    public static ExpansionHubEx getExpansionHub(String name){
+        return hardwareMap.get(ExpansionHubEx.class, name);
     }
 }
