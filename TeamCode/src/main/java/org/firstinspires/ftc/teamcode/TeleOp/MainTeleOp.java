@@ -5,24 +5,19 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Hardware.Hardware;
 import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.Utils.TelemetryManager;
 
 @TeleOp
 public class MainTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        SampleMecanumDrive drive=new SampleMecanumDrive(hardwareMap);
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         Initializations.init(hardwareMap, drive, telemetry);
         waitForStart();
-        while(opModeIsActive()&&!isStopRequested()){
-            Movement.run(gamepad1);
-            Claw.run(gamepad1);
-            Arm.run(gamepad1);
-            Slides.run(gamepad1);
-            telemetry.addData("right slide position: ", Hardware.rightSlide.getCurrentPosition());
-            telemetry.addData("left slide position: ", Hardware.leftSlide.getCurrentPosition());
-            telemetry.addData("arm position: ", Hardware.arm.getCurrentPosition());
-            telemetry.update();
+        while (opModeIsActive() && !isStopRequested()) {
+            InputController.control(gamepad1, gamepad2);
+            TelemetryManager.manage();
         }
     }
 }

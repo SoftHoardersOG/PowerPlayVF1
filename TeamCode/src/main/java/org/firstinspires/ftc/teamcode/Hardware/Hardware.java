@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Hardware.revex.ExpansionHubEx;
 import org.firstinspires.ftc.teamcode.TeleOp.Arm;
+import org.firstinspires.ftc.teamcode.TeleOp.Claw;
 
 
 public class Hardware {
@@ -44,8 +45,7 @@ public class Hardware {
     }
 
     public static void configure() {
-        rightClaw.setPosition(0.14);
-        leftClaw.setPosition(0.95);
+        Claw.open();
 
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -66,7 +66,8 @@ public class Hardware {
         rightSlide.setTargetPosition(0);
         leftSlide.setTargetPosition(0);
 
-        Arm.pid.setTarget(-15);
+        Arm.down();
+        Arm.setPidPowerLimit(0.6);
 
         telemetry.addLine("Hardware configuring done!");
     }
